@@ -1,0 +1,31 @@
+server:
+  port: 2003
+
+spring:
+  application:
+    name: seate-account-service
+  cloud:
+    alibaba:
+      seata:
+        tx-service-group: fsp_tx_group #自定义事务组名称 需要与seata-server中的对应
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/payment?serverTimezone=UTC&allowPublicKeyRetrieval=true&useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: root
+
+feign:
+  hystrix:
+    enabled: false
+
+logging:
+  level:
+    io:
+      seata: info
+
+mybatis:
+  mapperLocations: classpath:mapper/*.xml
+  #type-aliases-package: com.charley.springcloud.alibaba.domain
